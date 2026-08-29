@@ -1,0 +1,8 @@
+1. create django project >> django-admin startproject <NAME>
+2. create django app >> py manage.py startapp <NAME>
+3. set up geodjango
+    setting.py > add 'django.contrib.gis'
+    install GDAL / osgeo4w
+    add  C:\OSGeo4W\bin sa System PATH
+    run: dir C:\OSGeo4W\bin\gdal*.dll (to get version) and dir C:\OSGeo4W\bin\geos_c*.dll
+    add the geodjango setting code in setting.py

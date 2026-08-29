@@ -11,10 +11,29 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# GeoDjango / GDAL config
+OSGEO4W = r"C:\OSGeo4W"
+if hasattr(os, 'add_dll_directory'):
+    os.add_dll_directory(os.path.join(OSGEO4W, 'bin'))
+
+os.environ['GDAL_DATA'] = os.path.join(OSGEO4W, 'share', 'gdal')
+os.environ['PROJ_LIB'] = os.path.join(OSGEO4W, 'share', 'proj')
+
+GDAL_LIBRARY_PATH = r"C:\OSGeo4W\bin\gdal313.dll"
+GEOS_LIBRARY_PATH = r"C:\OSGeo4W\bin\geos_c.dll"
+
+# Warm up GDAL/GEOS DLL loading immediately while the dll directory
+# is freshly added — avoids a Windows DLL-resolution issue that
+# happens when Django loads these later via admin.autodiscover()
+from ctypes import CDLL, WinDLL
+CDLL(GEOS_LIBRARY_PATH)
+CDLL(GDAL_LIBRARY_PATH)
+WinDLL(GDAL_LIBRARY_PATH)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
@@ -37,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 ]
 
 MIDDLEWARE = [
