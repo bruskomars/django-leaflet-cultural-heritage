@@ -57,6 +57,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+
+    #local apps
+    'ch_backend.apps.ChBackendConfig',
+    'ch_frontend.apps.ChFrontendConfig',
 ]
 
 MIDDLEWARE = [
