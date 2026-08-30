@@ -71,5 +71,20 @@
         add to patterns_url > path('', include('<APPNAME>.urls'))
 
 
+### SERIALIZATION
+
+14. import the seralizer package > from django.core.serializers import serialize
+    sample of serialization querying objects in database models
+        queryset = Place.objects.all()
+        geojson = serialize('geojson', 
+                            queryset, 
+                            geometry_field='point_geometry', 
+                            srid=3857)
+    
+    NOTE: when serializing single object, enclosed it to a list > [place]
+
+15.
+
+
    
     
