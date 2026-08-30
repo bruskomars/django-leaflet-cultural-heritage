@@ -36,4 +36,11 @@
     set up media folder when using an image field in your models
         add to settings.py >    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
                                 MEDIA_URL = '/media/'
+    
+    do migrations for both app models and database
+        py manage.py makemigrations <appname>
+        py manage.py migrate
 
+9. Register you models in admin.py
+    make sure to use contrib.gis < from django.contrib.gis import admin
+    create custom geodAdmin for models using geo attributes
