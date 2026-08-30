@@ -16,7 +16,7 @@ class Category(models.Model):
 class Place(models.Model):
     categories = models.ForeignKey(Category, on_delete=models.CASCADE)
     place_name = models.CharField(max_length=50)
-    description = models.CharField(max_length=25, blank=True)
+    description = models.CharField(max_length=250, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='place_images/', blank=True, null=True)
