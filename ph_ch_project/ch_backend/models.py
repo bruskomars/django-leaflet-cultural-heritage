@@ -1,4 +1,4 @@
-from django.db import models
+#from django.db import models
 from django.contrib.gis.db import models
 
 # Create your models here.
@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.category_name
 
 class Place(models.Model):
-    categories = models.ForeignKey('Categories', on_delete=models.CASCADE)
+    categories = models.ForeignKey(Category, on_delete=models.CASCADE)
     place_name = models.CharField(max_length=50)
     description = models.CharField(max_length=25, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
