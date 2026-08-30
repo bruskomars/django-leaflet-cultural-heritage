@@ -45,8 +45,14 @@
     make sure to use contrib.gis < from django.contrib.gis import admin
     create custom geodAdmin for models using geo attributes
 
+
+### MEDIA
 10. for media, link the media files to ph_ch_project URL 
         from django.conf import settings
         from django.conf.urls.static import static
 
         + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+11. install 3rd party app to ensure when deleting an item, the media files will also be deleted
+    > pip install django-cleanup
+    in settings.py add the app > 'django_cleanup.apps.CleanupConfig',
