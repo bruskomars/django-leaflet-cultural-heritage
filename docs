@@ -44,3 +44,9 @@
 9. Register you models in admin.py
     make sure to use contrib.gis < from django.contrib.gis import admin
     create custom geodAdmin for models using geo attributes
+
+10. for media, link the media files to ph_ch_project URL 
+        from django.conf import settings
+        from django.conf.urls.static import static
+
+        + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

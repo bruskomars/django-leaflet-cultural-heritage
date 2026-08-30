@@ -7,7 +7,7 @@ admin.site.register(Category)
 class CustomGeoAdmin(admin.GISModelAdmin):
     gis_widget_kwargs = {
         'attrs': {
-            'default_zoom': 11,
+            'default_zoom': 14,
             'default_lon': 121.037281,
             'default_lat': 14.569973,
         }
