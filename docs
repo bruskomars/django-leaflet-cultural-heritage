@@ -56,3 +56,20 @@
 11. install 3rd party app to ensure when deleting an item, the media files will also be deleted
     > pip install django-cleanup
     in settings.py add the app > 'django_cleanup.apps.CleanupConfig',
+
+
+### VIEWS
+
+12. Create a urls.py in your app folder to link your views. This will be your sub-urls 
+    in urls.py add 
+        > from django.urls import path, 
+    then create your patterns url for your views
+        > from . import views 
+
+13. Link your sub urls to your main urls in project folder
+        import another package > from django.urls import include
+        add to patterns_url > path('', include('<APPNAME>.urls'))
+
+
+   
+    
