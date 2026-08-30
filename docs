@@ -29,5 +29,9 @@
 
 7. start creating super user <py manage.py createsuperuser> <admin:admin>
 
+### MODELS
 
+8. Create models
+    import the geodjango models > from django.contrib.gis.db import models
+    
 
