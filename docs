@@ -83,8 +83,33 @@
     
     NOTE: when serializing single object, enclosed it to a list > [place]
 
-15.
 
+### DJANGO REST FRAMEWORK
+15. pip install djangorestframework and djangorestframework-gis
 
-   
-    
+16. Add the installed apps in the settings.py app
+    'rest_framework',
+    'rest_framework_gis',
+
+17. Once installed, the serializer in the views can be moved to a seperate file. 
+    > create serializers.py file
+    Load the models you want to serialize by creating serializer 
+        from .models import Category, Place, City
+        from rest_framework import serializers
+
+        class CategorySerializer(serializers.ModelSerializer):
+            class Meta:
+                model = Category
+                fields = '__all__'
+
+18. In views.py, remove the django.core.serialize and use the craeted serializer instead
+    import the generics module >> from rest_framework import generics
+
+    Sample class serializer now in views.py
+        class CategoryList(generics.ListAPIView):
+        queryset = Category.objects.all()
+        serializer_class = CategorySerializer
+        name = 'category-list'
+
+    Update the urls.py path 
+        path('categories/', views.CategoryList.as_view(), name=views.CategoryList.name)

@@ -60,6 +60,8 @@ INSTALLED_APPS = [
 
     #3rd party apps
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
+    'rest_framework_gis',
 
     #local apps
     'ch_backend.apps.ChBackendConfig',
