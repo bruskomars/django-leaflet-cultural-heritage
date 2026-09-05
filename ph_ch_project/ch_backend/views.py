@@ -3,12 +3,15 @@ from .serializers import CategorySerializer
 from rest_framework import generics
 
 # Create your views here.
-class CategoryList(generics.ListAPIView):
+class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     name = 'category-list'
 
-
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    name = 'category-detail'
 
 #### OLD SERIALIZER
 # def all_places(request):

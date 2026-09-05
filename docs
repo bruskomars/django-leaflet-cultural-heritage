@@ -113,3 +113,7 @@
 
     Update the urls.py path 
         path('categories/', views.CategoryList.as_view(), name=views.CategoryList.name)
+
+19. In Django framework, you can use ListView or ListCreateView to create and get records.
+    Also the RetrieveView or RetrieveUpdateDestroyView to delete,edit records.
+
