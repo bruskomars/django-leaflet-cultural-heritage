@@ -117,3 +117,25 @@
 19. In Django framework, you can use ListView or ListCreateView to create and get records.
     Also the RetrieveView or RetrieveUpdateDestroyView to delete,edit records.
 
+### GEO MODEL SERIALIZER 
+20. for models with geospatial field like Place where there is geometry_field, use the >> GeoFeatureModelSerializer
+
+    >> from rest_framework_gis.serializers import GeoFeatureModelSerializer
+
+    >> when serializing a foreign key use the >> serializers.SlugRelatedField to get the value of the foreign key.
+
+    sample custom serializer 
+        class PlaceSerializer(GeoFeatureModelSerializer):
+            categories = serializers.SlugRelatedField(queryset=Category.objects.all(), slug_field='category_name')
+            class Meta:
+                model = Place
+                fields = (
+                    'pk',
+                    'categories',
+                    'place_name',
+                    'description',
+                    'created_at',
+                    'modified_at',
+                    'image',
+                )
+                geo_field = 'point_geometry'

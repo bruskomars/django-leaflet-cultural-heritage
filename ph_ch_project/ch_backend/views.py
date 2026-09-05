@@ -1,5 +1,5 @@
 from .models import Place, Category, City
-from .serializers import CategorySerializer
+from .serializers import CategorySerializer, PlaceSerializer
 from rest_framework import generics
 
 # Create your views here.
@@ -12,6 +12,16 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     name = 'category-detail'
+
+class PlaceList(generics.ListAPIView):
+    queryset = Place.objects.filter(active=True)
+    serializer_class = PlaceSerializer
+    name = 'place-list-active'
+
+class PlaceDetail(generics.RetrieveAPIView):
+    queryset = Place.objects.all()
+    serializer_class = PlaceSerializer
+    name = 'place-detail'
 
 #### OLD SERIALIZER
 # def all_places(request):
