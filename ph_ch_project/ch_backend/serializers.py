@@ -21,3 +21,21 @@ class PlaceSerializer(GeoFeatureModelSerializer):
             'image',
         )
         geo_field = 'point_geometry'
+
+class CitySerializer(GeoFeatureModelSerializer):
+    proximity = serializers.SerializerMethodField('get_proximity')
+    
+    def get_proximity(self, obj):
+        if obj.distance:
+            return obj.distance.km
+        else:
+            return False
+        
+    class Meta:
+        model = City
+        fields = (
+            'pk',
+            'name',
+            'proximity',
+        )
+        geo_field = 'point_geometry'
