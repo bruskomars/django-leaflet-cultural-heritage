@@ -201,6 +201,35 @@
                 
                 return nearest_cities
 
-    
+### SETTING PERMISSION TO DJANGO
+23. set permission classes in settings.py 
+
+    REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES': [
+            #'rest_framework.permissions.IsAuthenticated',
+            'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        ]
+    }
+
+24. # adding permission to a certain views only. Import first 
+        >> from rest_framework.permissions import IsAuthenticated
+
+    # creating permission_classes, this will prevent user to access the view if not authenticated 
+        >> permission_classes = [IsAuthenticated]
+
+### THROTTLING POLICY
+25. Limitting request sample 5/day using throttling. add this code in the settings.py 
+        REST_FRAMEWORK = {
+            'DEFAULT_THROTTLE_CLASSES': [
+                'rest_framework.throttling.AnonRateThrottle',
+                'rest_framework.throttling.UserRateThrottle'
+            ],
+            'DEFAULT_THROTTLE_RATES': {
+                'anon': '3/day',
+                'user': '1000/day'
+            }
+        }
+
+
 
 

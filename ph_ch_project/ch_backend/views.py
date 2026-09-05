@@ -6,6 +6,8 @@ from django.http import Http404
 from django.contrib.gis.db.models.functions import Distance
 from django.shortcuts import get_object_or_404
 
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
@@ -28,6 +30,7 @@ class PlaceDetail(generics.RetrieveAPIView):
     name = 'place-detail'
 
 class CityList(generics.ListAPIView):
+    #permission_classes = [IsAuthenticated]
     serializer_class = CitySerializer
     name = 'cities-list'
 
