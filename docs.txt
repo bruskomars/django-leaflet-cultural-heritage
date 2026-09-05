@@ -230,6 +230,16 @@
             }
         }
 
+### LOG IN PAGE USING DJANGO
+26. to use url for login page >> from django.conf.urls import include
 
+    # add this to urls.py
+        path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
+### SUFFIX PATRON
+27. this will allow user to view the page either html or json. need to import this 
+    >> from rest_framework.urlpatterns import format_suffix_patterns
+
+    then add this to urlpatterns in urls.py
+    >> urlpatterns = format_suffix_patterns(urlpatterns)
 

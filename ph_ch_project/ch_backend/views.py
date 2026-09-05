@@ -35,7 +35,7 @@ class CityList(generics.ListAPIView):
     name = 'cities-list'
 
     def get_queryset(self):
-        placeID = self.request.query_params.get('placeid', None)
+        placeID = self.request.query_params.get('placeid', None) #create paramater to get the place id from the request
         
         if placeID is None:
             raise Http404("Place ID is required.")
