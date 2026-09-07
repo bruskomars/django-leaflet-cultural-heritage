@@ -53,10 +53,49 @@ function init() {
     });
   };
 
+  // function to get near cities based on the clicked place
+  var nearCitiesGeoJSONLayer; // Variable to hold the near cities layer
+  const addNearCitiesToMap = (geojson) => {
+    if (nearCitiesGeoJSONLayer) {
+      map.removeLayer(nearCitiesGeoJSONLayer);
+    }
+    nearCitiesGeoJSONLayer = L.geoJSON(geojson, {
+      onEachFeature: function (feature, layer) {
+        let cityName = feature.properties.name;
+        let proximity = feature.properties.proximity;
+        layer.bindPopup(
+          `<h4>${cityName}</h4><p>Proximity: ${proximity.toFixed(2)} km</p>`,
+        );
+      },
+    }).addTo(map);
+  };
+
+  const addNearCitiesLogic = (id) => {
+    let url = `/api/v1/cities/?placeid=${id}`;
+    fetchGetRequest(url, addNearCitiesToMap);
+  };
+
+  const placeImageElement = document.getElementById("placeimage");
+  const menuTitleElement = document.getElementById("menu_title");
+  const menuTextElement = document.getElementById("menu_text");
+
   // Function to handle each feature and bind a popup with the place name
   const onEachFeatureHandler = (feature, layer) => {
     let placeName = feature.properties.place_name;
     layer.bindPopup(`<h4>${placeName}</h4>`);
+
+    let noImageAvailable = "./media/place_images/no_image.jpg";
+    layer.on("click", () => {
+      let featureImage = feature.properties.image
+        ? feature.properties.image
+        : noImageAvailable;
+      placeImageElement.src = featureImage;
+      menuTitleElement.textContent = feature.properties.place_name;
+      menuTextElement.textContent = feature.properties.description;
+
+      let featureID = feature.properties.pk;
+      addNearCitiesLogic(featureID);
+    });
   };
 
   // GEOJSON layer

@@ -321,4 +321,28 @@
 ### MAP STYLING
 35. split the window to 2 parts, 1:map and 2: details
 
-36. update information in the col 2
+### UPDATE MAP DETAILS VIEW 
+36. create variable for html elements
+        const placeImageElement = document.getElementById("placeimage");
+        const menuTitleElement = document.getElementById("menu_title");
+        const menuTextElement = document.getElementById("menu_text");
+
+### GETTING NEAR CITIES 
+37. get the feature id and stored it in a variable 
+        > let featureID = feature.properties.pk;
+    
+    contruct the url using the featureID 
+        > let url = `/api/v1/cities/?placeid=${id}`;
+    
+    use the fetchGetRequest func to call the url
+        > const addNearCitiesLogic = (id) => {
+            let url = `/api/v1/cities/?placeid=${id}`;
+            fetchGetRequest(url, addNearCitiesToMap);
+        }; 
+        ## this will have a geojson result and use the result in the addNearCitiesToMap function
+
+    create variable that will hold the geojson results
+        > var nearCitiesGeoJSONLayer; 
+
+    
+
