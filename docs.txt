@@ -265,3 +265,9 @@
         {% block jss_link %}
             <script src="{% static 'javascripts/main.js' %}"></script>
         {% endblock %}
+
+### LEAFLET
+31. include leaflet css and js to your html files.
+
+    > in main.js add eventlistener everytime the page is loaded
+        >> document.addEventListener('DOMContentLoaded', init)
