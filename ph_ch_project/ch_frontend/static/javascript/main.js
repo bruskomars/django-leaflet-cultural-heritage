@@ -40,14 +40,8 @@ function init() {
     fillOpacity: 1,
   };
 
-  const addAllPlacesToMap = (json) => {
-    let places = L.geoJSON(json, {
-      pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, poinstStyle);
-      },
-    }).addTo(map);
-
-    // Add click event listener to the places layer to change the color of the clicked marker
+  // Function to style the clicked marker and reset the previous one
+  const styleGeoJSONonClick = (places) => {
     let lastClickedFeature;
 
     places.on("click", (e) => {
@@ -57,6 +51,17 @@ function init() {
       lastClickedFeature = e.layer;
       e.layer.setStyle(selectedPoinstStyle);
     });
+  };
+
+  // GEOJSON layer
+  const addAllPlacesToMap = (json) => {
+    let places = L.geoJSON(json, {
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, poinstStyle);
+      },
+    }).addTo(map);
+    // Add click event listener to the places layer to change the color of the clicked marker
+    styleGeoJSONonClick(places);
   };
 
   fetchGetRequest("/api/v1/places/", addAllPlacesToMap);
