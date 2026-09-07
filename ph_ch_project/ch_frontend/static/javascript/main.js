@@ -53,11 +53,20 @@ function init() {
     });
   };
 
+  // Function to handle each feature and bind a popup with the place name
+  const onEachFeatureHandler = (feature, layer) => {
+    let placeName = feature.properties.place_name;
+    layer.bindPopup(`<h4>${placeName}</h4>`);
+  };
+
   // GEOJSON layer
   const addAllPlacesToMap = (json) => {
     let places = L.geoJSON(json, {
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, poinstStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        onEachFeatureHandler(feature, layer);
       },
     }).addTo(map);
     // Add click event listener to the places layer to change the color of the clicked marker
