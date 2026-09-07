@@ -271,3 +271,21 @@
 
     > in main.js add eventlistener everytime the page is loaded
         >> document.addEventListener('DOMContentLoaded', init)
+
+### FETCHING API
+32. fetch API to get json data. after this code the data from the url will be fetch.
+        const fetchGetRequest = async (url, func) => {
+            try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return func(data);
+            } catch (error) {
+            console.error("Error fetching data:", error.message);
+            }
+        };
+
+        const addAllPlacesToMap = (json) => {
+            console.log(json);
+        };
+
+        fetchGetRequest("/api/v1/places/", addAllPlacesToMap);
