@@ -289,3 +289,25 @@
         };
 
         fetchGetRequest("/api/v1/places/", addAllPlacesToMap);
+
+### ADDING FEATURES TO MAP VIEW 
+33. sample javascript to add and apply changes to style of features when selected
+
+    const addAllPlacesToMap = (json) => {
+    let places = L.geoJSON(json, {
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, poinstStyle);
+      },
+    }).addTo(map);
+
+    // Add click event listener to the places layer to change the color of the clicked marker
+    let lastClickedFeature;
+
+    places.on("click", (e) => {
+      if (lastClickedFeature) {
+        places.resetStyle(lastClickedFeature);
+      }
+      lastClickedFeature = e.layer;
+      e.layer.setStyle(selectedPoinstStyle);
+    });
+  };

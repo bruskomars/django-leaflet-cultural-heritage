@@ -30,12 +30,33 @@ function init() {
     fillOpacity: 1,
   };
 
+  const selectedPoinstStyle = {
+    stroke: true,
+    radius: 8,
+    color: "black",
+    weight: 2,
+    opacity: 1,
+    fillColor: "yellow",
+    fillOpacity: 1,
+  };
+
   const addAllPlacesToMap = (json) => {
     let places = L.geoJSON(json, {
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, poinstStyle);
       },
     }).addTo(map);
+
+    // Add click event listener to the places layer to change the color of the clicked marker
+    let lastClickedFeature;
+
+    places.on("click", (e) => {
+      if (lastClickedFeature) {
+        places.resetStyle(lastClickedFeature);
+      }
+      lastClickedFeature = e.layer;
+      e.layer.setStyle(selectedPoinstStyle);
+    });
   };
 
   fetchGetRequest("/api/v1/places/", addAllPlacesToMap);
