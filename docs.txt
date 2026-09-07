@@ -252,4 +252,16 @@
 
     add urls path to main urls.py
 
-30. 
+### STATIC FILES 
+30. create folder inside app folder named <static>
+    
+    > in base.html create block for styles and js
+    > in your html file, extend those static files using <<{% load static %}>>
+        {% load static%}
+        {% block css_link %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        {% endblock %}
+
+        {% block jss_link %}
+            <script src="{% static 'javascripts/main.js' %}"></script>
+        {% endblock %}

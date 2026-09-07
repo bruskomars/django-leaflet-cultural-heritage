@@ -1,4 +1,12 @@
-{% extends "ch_frontend/base.html" %}
+{% extends "ch_frontend/base.html " %}
+{% load static %}
+{% block css_link %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block jss_link %}
+    <script src="{% static 'javascript/main.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     <h1>Places List Map</h1>

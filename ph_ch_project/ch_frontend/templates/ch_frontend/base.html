@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}My App{% endblock %}</title>
+
+    <!--CSS  -->
+    {% block css_link %}{% endblock %}
 </head>
 <body>
-    <div>
+    <!-- JSS -->
+    {% block jss_link %}{% endblock %}
+
+
+    <div id="content">
     {% block content %}
     {% endblock %}
     </div>
