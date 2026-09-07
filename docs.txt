@@ -243,3 +243,13 @@
     then add this to urlpatterns in urls.py
     >> urlpatterns = format_suffix_patterns(urlpatterns)
 
+### FRONTEND development
+28. Create templates/<name of app:: ch_frontend>. as long as you have templates folder in your django app, it will look to that folder
+    to render html file. the name of app as folder name is to ensure that if you have 2 or more apps that have templates folder, it will
+    know where to look.
+
+29. Create boilerplate template. <base.html>
+
+    add urls path to main urls.py
+
+30. 
