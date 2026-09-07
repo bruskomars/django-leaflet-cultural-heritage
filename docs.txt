@@ -311,3 +311,14 @@
       e.layer.setStyle(selectedPoinstStyle);
     });
   };
+
+34. Pop up handler for each clicked feature
+        const onEachFeatureHandler = (feature, layer) => {
+            let placeName = feature.properties.place_name;
+            layer.bindPopup(`<h4>${placeName}</h4>`);
+        };
+
+### MAP STYLING
+35. split the window to 2 parts, 1:map and 2: details
+
+36. update information in the col 2
